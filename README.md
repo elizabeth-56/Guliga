@@ -1,2 +1,2 @@
-# guliga-
+# guliga
 guliga-kazhichille inniyum
