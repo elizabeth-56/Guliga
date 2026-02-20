@@ -67,15 +67,18 @@ p {
 
 <script>
 setTimeout(() => {
+
+    // Vibrate
     if (navigator.vibrate) {
-        navigator.vibrate([500,200,500]);
+        navigator.vibrate([500, 200, 500]);
     }
+
+    // Wait 4 seconds then redirect to splash page
+    setTimeout(() => {
+        window.location.href = "first.html"; 
+    }, 4000);
+
 }, 800);
-
-function goHome() {
-    window.location.href = "index.html";
-}
 </script>
-
 </body>
 </html>

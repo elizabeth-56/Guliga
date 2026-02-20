@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ഗുളിക വിവരങ്ങൾ ചേർക്കുക</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Manjari', sans-serif;
+    background: #F4F9F9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    background: #2A9D8F;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #21867A;
+}
+
+.view-btn {
+    background: #264653;
+}
+
+.view-btn:hover {
+    background: #1b3238;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>ഗുളിക വിവരങ്ങൾ ചേർക്കുക</h1>
+
+    <input type="text" id="medicineName" placeholder="ഗുളികയുടെ പേര്">
+    <input type="text" id="diseaseName" placeholder="ഏത് രോഗത്തിനാണ്?">
+    <input type="time" id="medicineTime">
+
+    <select id="foodType">
+        <option value="">ഭക്ഷണത്തിന്</option>
+        <option>ഭക്ഷണത്തിന് മുമ്പ്</option>
+        <option>ഭക്ഷണത്തിന് ശേഷം</option>
+    </select>
+
+    <button onclick="saveMedicine()">സംരക്ഷിക്കുക</button>
+
+    <button class="view-btn" onclick="viewMedicines()">ചേർത്ത വിവരങ്ങൾ കാണുക</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const supabaseUrl = "https://xntlnqkrdjguutmvlboe.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhudGxucWtyZGpndXV0bXZsYm9lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE2MDUzNjksImV4cCI6MjA4NzE4MTM2OX0.AE26NwidUiD52gOPe8pA4I6Mw7OaE9DRnnX69C07ELU";
+
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+async function saveMedicine() {
+    const name = document.getElementById("medicineName").value;
+    const disease = document.getElementById("diseaseName").value;
+    const time = document.getElementById("medicineTime").value;
+    const food = document.getElementById("foodType").value;
+
+    if (!name || !disease || !time || !food) {
+        alert("ദയവായി എല്ലാ വിവരങ്ങളും നൽകുക");
+        return;
+    }
+
+    const { data, error } = await supabase
+        .from("medicines")
+        .insert([
+            {
+                medicine_name: name,
+                disease_name: disease,
+                medicine_time: time,
+                food_type: food
+            }
+        ]);
+
+    if (error) {
+        console.log(error);
+        alert("സംരക്ഷിക്കാൻ പറ്റിയില്ല ❌");
+    } else {
+        alert("വിവരങ്ങൾ സംരക്ഷിച്ചു ✅");
+
+        // clear form
+        document.getElementById("medicineName").value = "";
+        document.getElementById("diseaseName").value = "";
+        document.getElementById("medicineTime").value = "";
+        document.getElementById("foodType").value = "";
+    }
+}
+</script>
+
+</body>
+</html>
