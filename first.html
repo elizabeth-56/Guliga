@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ഗുളിക</title>
+
+    <!-- Malayalam Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Manjari', sans-serif;
+            background: #FFF8E7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: #222;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .logo {
+            font-size: 100px;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        h1 {
+            font-size: 72px;
+            margin: 20px 0 10px 0;
+        }
+
+        .tagline {
+            font-size: 32px;
+            margin-bottom: 70px;
+        }
+
+        .start-btn {
+            background-color: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 24px 80px;
+            font-size: 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .start-btn:hover {
+            background-color: #21867A;
+            transform: scale(1.08);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 50px;
+            }
+
+            .tagline {
+                font-size: 24px;
+            }
+
+            .start-btn {
+                font-size: 22px;
+                padding: 18px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo">💊</div>
+
+    <h1>ഗുളിക</h1>
+
+    <div class="tagline">
+        കഴിച്ചില്ലേ ഇന്നിയും?
+    </div>
+
+    <button class="start-btn" onclick="goToApp()">ആരംഭിക്കാം</button>
+
+</div>
+
+<script>
+    function goToApp() {
+        alert("ഡാഷ്ബോർഡിലേക്ക് പോകുന്നു...");
+        // Later change to:
+        // window.location.href = "dashboard.html";
+    }
+</script>
+
+</body>
+</html>

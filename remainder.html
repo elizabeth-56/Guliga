@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ഗുളിക ഓർമ്മപ്പെടുത്തൽ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Baloo Chettan 2', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+
+    /* Background image */
+    background: url("pic 1.webp") no-repeat center center/cover;
+}
+
+/* Transparent overlay */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55); /* Adjust 0.3 - 0.7 for transparency */
+}
+
+/* Keep text above overlay */
+.content {
+    position: relative;
+}
+
+.logo {
+    font-size: 90px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+h1 {
+    font-size: 60px;
+    margin: 20px 0;
+}
+
+p {
+    font-size: 32px;
+}
+</style>
+</head>
+
+<body onclick="goHome()">
+
+<div class="content">
+    <div class="logo">💊</div>
+    <h1>സമയം ആയി!</h1>
+    <p>ഗുളിക കഴിക്കണം 😊</p>
+</div>
+
+<script>
+setTimeout(() => {
+    if (navigator.vibrate) {
+        navigator.vibrate([500,200,500]);
+    }
+}, 800);
+
+function goHome() {
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
