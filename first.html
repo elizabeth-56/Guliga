@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>ഗുളിക</title>
 
     <!-- Malayalam Font -->
@@ -48,20 +47,37 @@
             margin-bottom: 70px;
         }
 
-        .start-btn {
-            background-color: #2A9D8F;
-            color: white;
+        .start-btn, .add-btn {
             border: none;
-            padding: 24px 80px;
-            font-size: 30px;
             border-radius: 50px;
             cursor: pointer;
             transition: 0.3s ease;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+
+        .start-btn {
+            background-color: #2A9D8F;
+            color: white;
+            padding: 24px 80px;
+            font-size: 30px;
         }
 
         .start-btn:hover {
             background-color: #21867A;
             transform: scale(1.08);
+        }
+
+        .add-btn {
+            background-color: #E76F51;
+            color: white;
+            padding: 18px 70px;
+            font-size: 26px;
+        }
+
+        .add-btn:hover {
+            background-color: #D65A3B;
+            transform: scale(1.05);
         }
 
         @media (max-width: 600px) {
@@ -76,6 +92,11 @@
             .start-btn {
                 font-size: 22px;
                 padding: 18px 50px;
+            }
+
+            .add-btn {
+                font-size: 20px;
+                padding: 14px 50px;
             }
         }
     </style>
@@ -92,13 +113,26 @@
         കഴിച്ചില്ലേ ഇന്നിയും?
     </div>
 
+    <!-- Start Button -->
     <button class="start-btn" onclick="goToApp()">ആരംഭിക്കാം</button>
+
+    <!-- Add Medicines Button -->
+    <button class="add-btn" onclick="window.location.href='addsetup.html'">മരുന്നുകൾ ചേർക്കുക</button>
 
 </div>
 
 <script>
 function goToApp() {
-    window.location.href = "add.html";  // your setup page name
+    // Get medicines from localStorage
+    let medicines = JSON.parse(localStorage.getItem("medicines")) || [];
+
+    if (medicines.length === 0) {
+        // First-time user
+        window.location.href = "addsetup.html";
+    } else {
+        // Existing user
+        window.location.href = "12.html";
+    }
 }
 </script>
 

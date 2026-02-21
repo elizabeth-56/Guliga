@@ -85,18 +85,13 @@ button:hover {
 
     <button onclick="saveMedicine()">സംരക്ഷിക്കുക</button>
 
-    <button class="view-btn" onclick="viewMedicines()">ചേർത്ത വിവരങ്ങൾ കാണുക</button>
+   
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const supabaseUrl = "https://xntlnqkrdjguutmvlboe.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhudGxucWtyZGpndXV0bXZsYm9lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE2MDUzNjksImV4cCI6MjA4NzE4MTM2OX0.AE26NwidUiD52gOPe8pA4I6Mw7OaE9DRnnX69C07ELU";
-
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-async function saveMedicine() {
+function saveMedicine() {
     const name = document.getElementById("medicineName").value;
     const disease = document.getElementById("diseaseName").value;
     const time = document.getElementById("medicineTime").value;
@@ -107,29 +102,31 @@ async function saveMedicine() {
         return;
     }
 
-    const { data, error } = await supabase
-        .from("medicines")
-        .insert([
-            {
-                medicine_name: name,
-                disease_name: disease,
-                medicine_time: time,
-                food_type: food
-            }
-        ]);
+    // Get existing medicines from localStorage
+    let medicines = JSON.parse(localStorage.getItem("medicines")) || [];
 
-    if (error) {
-        console.log(error);
-        alert("സംരക്ഷിക്കാൻ പറ്റിയില്ല ❌");
-    } else {
-        alert("വിവരങ്ങൾ സംരക്ഷിച്ചു ✅");
+    // Add new medicine
+    medicines.push({
+        medicine_name: name,
+        disease_name: disease,
+        medicine_time: time,
+        food_type: food
+    });
 
-        // clear form
-        document.getElementById("medicineName").value = "";
-        document.getElementById("diseaseName").value = "";
-        document.getElementById("medicineTime").value = "";
-        document.getElementById("foodType").value = "";
-    }
+    // Save back to localStorage
+    localStorage.setItem("medicines", JSON.stringify(medicines));
+
+    alert("വിവരങ്ങൾ സംരക്ഷിച്ചു ✅");
+
+    // Clear form
+    document.getElementById("medicineName").value = "";
+    document.getElementById("diseaseName").value = "";
+    document.getElementById("medicineTime").value = "";
+    document.getElementById("foodType").value = "";
+}
+
+function goToViewPage() {
+    window.location.href = "view.html";
 }
 </script>
 
