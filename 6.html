@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>മരുന്ന് ഓർമ്മപ്പെടുത്തൽ</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    body {
+      margin: 0;
+      font-family: 'Noto Sans Malayalam', sans-serif;
+      height: 100vh;
+
+      /* POSITIONED BACKGROUND */
+      background: url("reminder.png") no-repeat;
+
+      background-size: contain;          /* show full image */
+      background-position: left top;     /* keeps bubble visible */
+
+      background-color: #f4f6f9;         /* fallback clean area */
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* LIGHT OVERLAY FOR READABILITY */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.75);
+    }
+
+    .content {
+      position: relative;
+      text-align: center;
+    }
+
+    .medicine-name {
+      font-size: 46px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    .button-container {
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      z-index: 1;
+    }
+
+    button {
+      padding: 16px 40px;
+      font-size: 20px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .taken-btn {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    .camera-btn {
+      background-color: #3498db;
+      color: white;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="content">
+    <div class="medicine-name" id="medicineName">
+      ഡോളോ 650
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button class="taken-btn" onclick="markTaken()">കഴിച്ചു</button>
+    <button class="camera-btn" onclick="openCamera()">ക്യാമറ</button>
+  </div>
+
+  <script>
+
+    const storedMedicine = localStorage.getItem("medicineName");
+    if (storedMedicine) {
+      document.getElementById("medicineName").textContent = storedMedicine;
+    }
+
+    function markTaken() {
+      alert("മരുന്ന് എടുത്തു ✅");
+    }
+
+    function openCamera() {
+      alert("ക്യാമറ തുറക്കുന്നു...");
+    }
+
+  </script>
+
+</body>
+</html>

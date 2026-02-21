@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<title>Overdose</title>
+</head>
+
+<body>
+
+<h1 style="color:red;">🚨 അപകടം!</h1>
+
+<h2>അനുവദിച്ച അളവിൽ കൂടുതലായി മരുന്ന് കഴിച്ചു</h2>
+
+<button onclick="makeCall()">📞 വിളിക്കുക</button>
+<button onclick="goHome()">🏠 Home</button>
+
+<script>
+
+function makeCall(){
+  const num = localStorage.getItem("caregiver");
+  window.location.href="tel:"+num;
+}
+
+function goHome(){
+  window.location.href="home.html";
+}
+
+</script>
+
+</body>
+</html>
